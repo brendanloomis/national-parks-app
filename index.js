@@ -3,7 +3,7 @@ const baseUrl = "https://developer.nps.gov/api/v1/parks"
 
 function formatQuery(params) {
     const query = Object.keys(params)
-        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
+        .map(key => `${encodeURIComponent(key)}=${params[key]}`);
     return query.join('&');
 }
 
@@ -62,7 +62,7 @@ function getParks(query, numResults) {
 function handleSubmit(){
     $('form').submit(event => {
         event.preventDefault();
-        const query = $('#states').val().split(",");
+        const query = $('#states').val().split(" ").join("");
         const numResults = $('#num-results').val();
         getParks(query, numResults);
     });
